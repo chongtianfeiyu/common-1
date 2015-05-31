@@ -1,0 +1,1 @@
+#git config --global alias.common = '!git add . && git commit -m "change.log" && git push -u origin master'
