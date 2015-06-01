@@ -223,12 +223,14 @@ Common.Util = new function(){
   }();
 
   /*Canvas*/
-  self.Canvas = function(canvasid){
+  self.Canvas = function(canvasid, config){
     this.canvas =  document.getElementById(canvasid) || canvasid;
     this.context =  this.canvas.getContext("2d");
     this.fillStyle =  "#888";
     this.strokeStyle =  "#36f";
     this.imgSrc = "";
+    this.imgOrgWidth = config.imgW;
+    this.imgOrgHeight = config.imgH;
   };
 
   self.Canvas.prototype.init =  function(w, h){
