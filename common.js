@@ -251,7 +251,7 @@ Common.Util = new function(){
   }
 
   self.Canvas.prototype.clear =  function(){
-    this.canvas.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
   self.Canvas.prototype.getMousePos = function(evt){
