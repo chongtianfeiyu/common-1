@@ -231,8 +231,9 @@ Common.Util = new function(){
     this.imgSrc = "";
   };
 
-  self.Canvas.prototype.init =  function(){
+  self.Canvas.prototype.init =  function(w, h){
     var self = this;
+    self.resize(w, h);
     if(this.imgSrc){
       var imgObj = new Image();
       imgObj.src = this.imgSrc;
