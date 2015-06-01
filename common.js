@@ -235,7 +235,7 @@ Common.Util = new function(){
 
   self.Canvas.prototype.init =  function(w, h){
     var self = this;
-    self.resize(w, h);
+    arguments.length > 1 ? self.resize(w, h) : self.resizeImg(w);
     if(this.imgSrc){
       var imgObj = new Image();
       imgObj.src = this.imgSrc;
@@ -250,6 +250,12 @@ Common.Util = new function(){
     if(! this.canvas){ return;}
     this.canvas.width = w;
     this.canvas.height = h;
+  }
+
+  self.Canvas.prototype.resizeImg =  function(w){
+    if(! this.canvas){ return;}
+    this.canvas.width = w;
+    this.canvas.height = w * this.imgOrgHeight / this.imgOrgWidth;
   }
 
   self.Canvas.prototype.clear =  function(){
