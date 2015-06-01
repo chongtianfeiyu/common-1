@@ -228,9 +228,19 @@ Common.Util = new function(){
     this.context =  this.canvas.getContext("2d");
     this.fillStyle =  "#888";
     this.strokeStyle =  "#36f";
+    this.imgSrc = "";
   };
 
   self.Canvas.prototype.init =  function(){
+    var self = this;
+    if(this.imgSrc){
+      var imgObj = new Image();
+      imgObj.src = this.imgSrc;
+      imgObj.onload  =  function(){
+        self.clear();
+        self.context.draw(imgObj, 0 , 0, self.width, self.height);
+      }
+    }
   }
 
   self.Canvas.prototype.resize =  function(w,h){
