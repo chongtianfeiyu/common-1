@@ -239,7 +239,7 @@ Common.Util = new function(){
       imgObj.src = this.imgSrc;
       imgObj.onload  =  function(){
         self.clear();
-        self.context.draw(imgObj, 0 , 0, self.width, self.height);
+        self.context.drawImage(imgObj, 0 , 0, self.width, self.height);
       }
     }
   }
