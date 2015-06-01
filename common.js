@@ -243,5 +243,13 @@ Common.Util = new function(){
     this.canvas.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
+  self.Canvas.prototype.getMousePos = function(evt){
+    var rect = this.canvas.getBoundingClientRect();
+    return {
+      x: evt.clientX - rect.left,
+      y: evt.clientY - rect.top
+    };
+  }
+
 //Common.Util END!  
 };
