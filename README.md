@@ -23,6 +23,9 @@ Common.Util.Event.mousePositionObj(event, el)
 #Common.Util.Canvas
 constructor(canvas)
 canvas 为canvas的id 或者其dom引用
-getMousePos(evt)
+Common.Util.Canvas.getMousePos(evt)
 获取鼠标相对canvas原点的坐标值
+Common.Util.Canvas.resize(w,h)
+重新调整canvas元素大小,(移动设备)
+
 
