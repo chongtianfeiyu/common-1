@@ -229,8 +229,7 @@ Common.Util = new function(){
     this.fillStyle =  "#888";
     this.strokeStyle =  "#36f";
     this.imgSrc = "";
-    this.imgOrgWidth = config.imgW;
-    this.imgOrgHeight = config.imgH;
+    !config ? false: (this.imgOrgWidth = config.imgW, this.imgOrgHeight = config.imgH);
   };
 
   self.Canvas.prototype.init =  function(w, h){
@@ -241,7 +240,7 @@ Common.Util = new function(){
       imgObj.src = this.imgSrc;
       imgObj.onload  =  function(){
         self.clear();
-        self.context.drawImage(imgObj, 0 , 0, self.width, self.height);
+        self.context.drawImage(imgObj, 0 , 0, self.canvas.width, self.canvas.height);
       }
     }
   }
