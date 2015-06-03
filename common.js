@@ -423,7 +423,7 @@ Common.Util = new function(){
   }
 
   self.Canvas.prototype.getTouchPos = function(evt){
-    reutn this.touchPos;
+    return this.touchPos;
   }
 
   self.Canvas.prototype.setMousePosition = function(evt){
