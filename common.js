@@ -200,7 +200,7 @@ window[vendors[x] + 'CancelRequestAnimationFrame'];
         }
     }
 
-    versions:function(){ 
+    ,versions:function(){ //浏览器判断
       var u = navigator.userAgent, app = navigator.appVersion; 
       return { 
         trident: u.indexOf('Trident') > -1, //IE内核 
