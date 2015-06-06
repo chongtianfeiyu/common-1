@@ -240,26 +240,44 @@ Common.Util = new function(){
           };
       }
       
-      //当需求为获得的坐标值相对于某一对象时，用：
-      ,mousePositionObj: function(event,el){
-          //获得对象相对于页面的横坐标值；id为对象的id
-          var thisX = el.offsetLeft;
-          //获得对象相对于页面的横坐标值；
-          var thisY = el.offsetTop;
-          //获得页面滚动的距离;
-          //注：document.documentElement.scrollTop为支持非谷歌内核；document.body.scrollTop为谷歌内核
-          var thisScrollTop = document.documentElement.scrollTop + document.body.scrollTop;
-          var event = event||window.event;
-          //获得相对于对象定位的横标值 = 鼠标当前相对页面的横坐标值 - 对象横坐标值；
-          var px = event.clientX - thisX;
-          //获得相对于对象定位的纵标值 = 鼠标当前相对页面的纵坐标值 - 对象纵坐标值 + 滚动条滚动的高度；
-          var py = event.clientY - thisY + thisScrollTop;
-
-          return {
-            x: px
-            ,y: py
+      ,addEvent: (function (window, undefined) {
+          var _eventCompat = function (event) {
+              var type = event.type;
+              if (type == 'DOMMouseScroll' || type == 'mousewheel') {
+                  event.delta = (event.wheelDelta) ? event.wheelDelta / 120 : -(event.detail || 0) / 3;
+              }
+              //alert(event.delta);
+              if (event.srcElement && !event.target) {
+                  event.target = event.srcElement;
+              }
+              if (!event.preventDefault && event.returnValue !== undefined) {
+                  event.preventDefault = function () {
+                      event.returnValue = false;
+                  };
+              }
+              /* 
+                 ......其他一些兼容性处理 */
+              return event;
           };
-      }
+          if (window.addEventListener) {
+              return function (el, type, fn, capture) {
+                  if (type === "mousewheel" && document.mozHidden !== undefined) {
+                      type = "DOMMouseScroll";
+                  }
+                  el.addEventListener(type, function (event) {
+                      fn.call(this, _eventCompat(event));
+                  }, capture || false);
+              }
+          } else if (window.attachEvent) {
+              return function (el, type, fn, capture) {
+                  el.attachEvent("on" + type, function (event) {
+                      event = event || window.event;
+                      fn.call(el, _eventCompat(event));
+                  });
+              }
+          }
+          return function () { };
+      })(window);
     }
   }();
 

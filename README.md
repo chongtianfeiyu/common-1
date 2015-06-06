@@ -18,8 +18,8 @@ extend(destination,source)
 #Common.Util.Event
 Common.Util.Event.mousePositionBody(event)
 获得的坐标值相对于body
-Common.Util.Event.mousePositionObj(event, el)
-获得的坐标值相对于某一Dom对象
+Common.Util.Event.addEvent(el, type, fn, capture)
+给Dom对象添加事件绑定, 加入了对鼠标滚轮事件的跨浏览器（IE7,8,9,opera,chrome,opera）支持。
 #Common.Util.Canvas
 constructor(canvas)
 canvas 为canvas的id 或者其dom引用
