@@ -277,7 +277,7 @@ Common.Util = new function(){
               }
           }
           return function () { };
-      })(window);
+      })(window)
     }
   }();
 
