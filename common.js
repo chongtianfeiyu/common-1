@@ -131,19 +131,21 @@ Common.Base = function(){
           window[vendors[x] + 'CancelAnimationFrame'] || 
 window[vendors[x] + 'CancelRequestAnimationFrame'];
     }
-    if (!window.requestAnimationFrame)
-    window.requestAnimationFrame = function(callback, element) {
-        var currTime = new Date().getTime();
-        var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-        var id = window.setTimeout(function() { callback(currTime + timeToCall); },
-          timeToCall);
-        lastTime = currTime + timeToCall;
-        return id;
-    };
-    if (!window.cancelAnimationFrame)
-    window.cancelAnimationFrame = function(id) {
-        clearTimeout(id);
-    };
+    if (!window.requestAnimationFrame){
+      window.requestAnimationFrame = function(callback, element) {
+          var currTime = new Date().getTime();
+          var timeToCall = Math.max(0, 16 - (currTime - lastTime));//该帧画面经过时间
+          var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+            timeToCall);
+          lastTime = currTime + timeToCall;
+          return id; 
+      };
+    }
+    if (!window.cancelAnimationFrame){
+      window.cancelAnimationFrame = function(id) {
+          clearTimeout(id);
+      };
+    }
 }());
 
     function getType(o){//获取对象的类型
@@ -280,7 +282,6 @@ Common.Util = new function(){
       })(window)
     }
   }();
-
   /*Canvas*/
   self.Canvas = function(canvasid, config){//config:{imgW: {number}, imgH: {number}};
     this.canvas =  document.getElementById(canvasid) || canvasid;
