@@ -208,13 +208,7 @@ Common.Util = new function(){
       }
     }
   }();
-  self.Animate = function(){
-    return {
-      translate: function(elem){
-        elem.style.webkitTrans
-      }
-    }
-  }();
+
   /*Canvas*/
   self.Canvas = function(canvasid, config){//config:{imgW: {number}, imgH: {number}};
     this.canvas =  document.getElementById(canvasid) || canvasid;
