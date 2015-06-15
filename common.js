@@ -124,6 +124,9 @@ Common.Util = new function(){
   var self = this;
   /*Event*/
   self.Event = function(){
+    var top = document.documentElement.clientTop  // 非IE为0，IE为2
+        ,left = document.documentElement.clientLeft; // 非IE为0，IE为2
+
     return { //当需求为获得的坐标值相对于body时，用：
       mousePositionBody: function(event){
           var event = event||window.event;
@@ -202,6 +205,13 @@ Common.Util = new function(){
             clearInterval(id);
           }
         }, 50);
+      }
+    }
+  }();
+  self.Animate = function(){
+    return {
+      translate: function(elem){
+        elem.style.webkitTrans
       }
     }
   }();
