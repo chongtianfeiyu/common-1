@@ -197,7 +197,14 @@ Common.Util = new function(){
           ,y: e.clientY || e.center.y - rect.top
         }
       }
-
+      ,getRelPosition: function(dest, source){
+        var destRect = this.getRect(dest)
+            ,sourceRect = this.getRect(source);
+        return {
+          x: destRect.left - sourceRect.left
+          ,y: destRect.top - sourceRect.top
+        };
+      }
       ,imgLoad: function(img, callback){//图像加载事件
         var id = setInterval(function(){
           if(img.complete){
