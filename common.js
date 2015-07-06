@@ -18,39 +18,10 @@ Common.Base = function(){
        F.prototype=o;
        return new F();
   };
-
-// Set up requestAnimationFrame and cancelAnimationFrame for use in the game code
-(function() {
-    var lastTime = 0;
-    var vendors = ['ms', 'moz', 'webkit', 'o'];
-    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-        window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
-        window.cancelAnimationFrame =
-          window[vendors[x] + 'CancelAnimationFrame'] || 
-window[vendors[x] + 'CancelRequestAnimationFrame'];
-    }
-    if (!window.requestAnimationFrame){
-      window.requestAnimationFrame = function(callback, element) {
-          var currTime = new Date().getTime();
-          var timeToCall = Math.max(0, 16 - (currTime - lastTime));//该帧画面经过时间
-          var id = window.setTimeout(function() { callback(currTime + timeToCall); },
-            timeToCall);
-          lastTime = currTime + timeToCall;
-          return id; 
-      };
-    }
-    if (!window.cancelAnimationFrame){
-      window.cancelAnimationFrame = function(id) {
-          clearTimeout(id);
-      };
-    }
-}());
-
-    function getType(o){//获取对象的类型
+  function getType(o){//获取对象的类型
         var _t;
         return ((_t = typeof(o)) == "object" ? o==null && "null" || Object.prototype.toString.call(o).slice(8,-1):_t).toLowerCase();
     }
-    
 
   return {
     inheritPrototype: function(subType, superType){
@@ -488,6 +459,6 @@ Common.Util = new function(){
           this.currentRegion.onmouseout();
       }
     }
-  };
+  }; 
 //Common.Util END!  
 };

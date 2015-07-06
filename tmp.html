@@ -1,0 +1,129 @@
+@using Lilaidao.Market.Entity
+@{
+    ViewBag.Title = "产品编辑";
+    ProductView pv = ViewBag.ProductView;
+    MKT_Product mp = ViewBag.MKT_Product;
+}
+<header>
+    <div class="new-header">
+        <a href="javascript:window.history.back();" class="new-a-back"><span>返回</span></a>
+        <h2>产品编辑</h2>
+        <a href="javascript:toggleShow('LLD');" class="new-a-lld" id="btnLLD"><span>利来道</span></a>
+    </div>
+    @Html.Partial("new-lld-tab5")
+</header>
+<section class="bank-container shop-edit">
+    <div class="bank-title">
+        <h5 class="top-title-msg">编辑产品信息（<strong class="s-f00">*</strong>为必填）</h5>
+    </div>
+    <div class="tb">
+        <div class="tc-label">&nbsp</div>
+        <div class="tc-ctn">
+            <img src="@pv.SrcDetail" width="50%" alt="pic" />
+        </div>
+    </div>
+    @if (pv != null && mp != null)
+    {
+        <form method="post">
+            <input type="hidden" name="id" value="@pv.Id" />
+            <div class="tb">
+                <div class="tbr">
+                    <div class="tc-label">
+                        <strong class="s-f00">*</strong>&nbsp商品标题:&nbsp
+                    </div>
+                    <div class="tc-ctn">
+                        <input class="text w-90p" type="text" name="wpName" id="wpName" value="@pv.Name" /><br />
+                        <p class="veri-text"></p>
+                    </div>
+                </div>
+
+                <div class="tbr">
+                    <div class="tc-label">
+                        <strong class="s-f00">*</strong>&nbsp批发价格:&nbsp
+                    </div>
+                    <div class="tc-ctn">
+                        <div class="tb edit-pf-price">
+                            <div class="tbr">
+                                <div class="tbc-half">
+                                    起批量(件)
+                                </div>
+                                <div class="tbc-half">
+                                    价格(元)
+                                </div>
+                            </div>
+                            <div class="tbr">
+                                <div class="tbc-half">
+                                    <input class="text w-40p mkt_Amount" type="tel" id="mkt_Amount1" name="mkt_Amount1" value="@pv.Amount1" />-<input class="text w-40p mkt_Amount" type="tel" id="mkt_Amount2" name="mkt_Amount2" value="@pv.Amount2" />
+                                </div>
+                                <div class="tbc-half">
+                                    <input class="text w-80p mpWholesalePrice" type="tel" id="mkt_WholesalePrice1" name="mkt_WholesalePrice1" value="@pv.WholesalePrice1" />
+                                </div>
+                            </div>
+                            <div class="tbr">
+                                <div class="tbc-half">
+                                    <input id="amount2-plus1" class="text w-40p" type="tel" value="@(pv.Amount2+1)" readonly="readonly" />-<input class="text w-40p mkt_Amount" type="tel" id="mkt_Amount3" name="mkt_Amount3" value="@pv.Amount3" />
+                                </div>
+                                <div class="tbc-half">
+                                    <input class="text w-80p mpWholesalePrice" type="tel" id="mkt_WholesalePrice2" name="mkt_WholesalePrice2" value="@pv.WholesalePrice2" />
+                                </div>
+                            </div>
+                            <div class="tbr">
+                                <div class="tbc-half">
+                                    &gt=<input id="amount3-plus1" class="text w-40p" type="tel" value="@(pv.Amount3+1)" readonly="readonly" />
+                                </div>
+                                <div class="tbc-half">
+                                    <input class="text w-80p mpWholesalePrice" type="tel" id="mkt_WholesalePrice3" name="mkt_WholesalePrice3" value="@pv.WholesalePrice3" />
+                                </div>
+                            </div>
+                        </div>
+                        <p class="veri-text amount"></p>
+                        <p class="veri-text price"></p>
+                    </div>
+                </div>
+
+                <div class="tbr">
+                    <div class="tc-label">
+                        <strong class="s-f00">*</strong>&nbsp建议零售价:&nbsp
+                    </div>
+                    <div class="tc-ctn">
+                        <input class="text w-50p" type="tel" id="mkt_RetailPrice" name="mkt_RetailPrice" value="@pv.RetailPrice" /><span>元</span><br />
+                        <p class="veri-text"></p>
+                    </div>
+                </div>
+                <div class="tbr">
+                    <div class="tc-label">
+                        <strong class="s-f00">*</strong>&nbsp库存:&nbsp
+                    </div>
+                    <div class="tc-ctn">
+                        <input class="text w-50p" type="tel" id="wpAlertCount" name="wpAlertCount" value="@pv.AlertCount" /><span>件</span><br />
+                        <p class="veri-text"></p>
+                    </div>
+                </div>
+                <div class="tbr">
+                    <div class="tc-label">
+                        <strong class="s-f00">*</strong>&nbsp运费:&nbsp
+                    </div>
+                    <div class="tc-ctn">
+                        @if (mp.IsFreightTemplate)
+                        {
+                            <input class="text w-50p" type="tel" id="mkt_FreightPrice" name="mkt_FreightPrice" value="@mp.FreightPrice" readonly="readonly" /><span>元(不可修改)</span><br />
+                        }
+                        else
+                        {
+                            <input class="text w-50p" type="tel" id="mkt_FreightPrice" name="mkt_FreightPrice" value="@mp.FreightPrice" /><span>元</span><br />
+                        }
+                        <p class="veri-text"></p>
+                    </div>
+                </div>
+                <div class="tbr">
+                    <div class="tc-label">
+                        &nbsp
+                    </div>
+                    <div class="tc-ctn">
+                        <input class="btn-sub" type="submit" value="更新" name="gengxin" id="gengxin" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    }
+</section>
